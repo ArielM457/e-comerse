@@ -1,0 +1,131 @@
+--DATA BASES:
+
+CREATE database ecommerce;
+use ecommerce;
+CREATE TABLE Consumidor (
+	IDConsumidor INT PRIMARY KEY AUTO_INCREMENT,
+	Nombre VARCHAR(50),
+	CorreoElectronico VARCHAR(50),
+	Direccion VARCHAR(50),
+	Contrasena VARCHAR(10)
+);
+
+CREATE TABLE Vendedor (
+	IDVendedor INT PRIMARY KEY AUTO_INCREMENT,
+	Nombre VARCHAR(50),
+	CorreoElectronico VARCHAR(50),
+	CuentaBancaria INT,
+	Contrasena VARCHAR(10)
+);
+
+CREATE TABLE Tienda (
+	IDTienda INT PRIMARY KEY AUTO_INCREMENT,
+	IDVendedor INT,
+	Nombre VARCHAR(50),
+	Direccion VARCHAR(50),
+	FOREIGN KEY (IDVendedor) REFERENCES Vendedor (IDVendedor)
+);
+
+CREATE TABLE Categoria (
+	IDCategoria INT PRIMARY KEY AUTO_INCREMENT,
+	Nombre VARCHAR(30)
+);
+
+CREATE TABLE Producto (
+	IDProducto INT PRIMARY KEY AUTO_INCREMENT,
+	IDCategoria INT,
+	Descripcion VARCHAR(30),
+	Precio DOUBLE,
+	CantidadStock INT,
+	FOREIGN KEY (IDCategoria) REFERENCES Categoria (IDCategoria)
+);
+
+
+CREATE TABLE TipoPago (
+	IDTipoPago INT PRIMARY KEY AUTO_INCREMENT,
+	Nombre VARCHAR(30)
+);
+
+INSERT INTO Vendedor (Nombre, CorreoElectronico, CuentaBancaria, Contrasena) 
+VALUES('Manuel Turizo', 'manuel.turizo@gmail.com', 1000005642, 'mturizo');
+
+INSERT INTO Consumidor (Nombre, CorreoElectronico, Direccion, Contrasena) 
+VALUES('Montalvo Mendez', 'mmmendez@gmail.com', 'Calle#123', 'mmendez'),
+('Maria Montoya', 'mmontoya@gmail.com', 'Calle#12343', 'mmontoya'),
+('Juan Velasquez', 'jvelasquez@gmail.com', 'Calle#8979', 'jvelasquez');
+
+ALTER table Producto add column Imagen VARCHAR(100);
+
+INSERT INTO Categoria (Nombre) VALUES ("Books"), ("Clothes"), ("School");
+
+INSERT INTO Producto ( IDCategoria, Descripcion, Precio, CantidadStock, Imagen) VALUES
+	( 1, "Love in times of anger", 40.00, 7, "img/books/02.jpg"),
+	( 1, "Dracula", 50.00, 5, "img/books/03.jpg"),
+	( 1, "Red, white and blood blood", 100.00, 8, "img/books/04.jpg"),
+	( 1, "It", 150.00, 15, "img/books/05.jpg"),
+	( 1, "Zombi", 90.00, 7, "img/books/06.jpg"),
+	( 1, "Habitos Atómicos", 80.00, 10, "img/books/07.jpg"),
+	(2, "Wool Sweater", 100.00, 10, "img/clothes/01.jpg"),
+	(2, "Skirt", 180.00, 15, "img/clothes/02.jpg"),
+	(2, "Tshirts", 80.00, 50, "img/clothes/03.jpg"),
+	(2, "Jeans Pants", 220.00, 12, "img/clothes/04.jpg"),
+	(2, "Jeans Pants", 250.00, 5, "img/clothes/05.jpg"),
+	(2, "Baseball jacket", 250.00, 8, "img/clothes/06.jpg"),
+	(2, "Jeans Pants", 200.00, 20, "img/clothes/07.jpg"),
+	(2, "blouses", 120.00, 20, "img/clothes/09.jpg"),
+	(3, "Compass Ascona", 22.00, 5, "img/scholl/01.jpg"),
+	(3, "NOtebooks", 30.00, 100, "img/scholl/02.jpg"),
+	(3, "Pens", 5.00, 200, "img/scholl/03.jpg"),
+	(3, "Mechanical Pencil", 10.00, 100, "img/scholl/04.jpg");
+
+
+CREATE TABLE CompraVentaDetalle (
+	IDCompraVentaDetalle INT PRIMARY KEY AUTO_INCREMENT,
+	IDCompraVenta INT,
+	IDProducto INT,
+	Cantidad INT,
+	Subtotal double,
+	FOREIGN KEY (IDCompraVenta) REFERENCES CompraVenta (IDCompraVenta),
+	FOREIGN KEY (IDProducto) REFERENCES Producto (IDProducto)
+);
+
+CREATE TABLE CompraVenta (
+	IDCompraVenta INT PRIMARY KEY AUTO_INCREMENT,
+	IDVendedor INT,
+	IDConsumidor INT,
+	IDTipoPago INT,
+	Fecha date,
+	MontoTotal double,
+	EstadoPago VARCHAR(40),
+	FOREIGN KEY (IDVendedor) REFERENCES Vendedor (IDVendedor),
+	FOREIGN KEY (IDConsumidor) REFERENCES Consumidor (IDConsumidor),
+	FOREIGN KEY (IDTipoPago) REFERENCES TipoPago (IDTipoPago)
+);
+INSERT INTO CompraVenta (IDVendedor, IDConsumidor,  Fecha, MontoTotal, EstadoPago )
+Values (1, 1, '2023-10-23', 100.0, "Correcto"),
+(1, 1, '2022-09-12', 200.0, "Correcto"),
+(1, 2,  '2023-02-28', 200.0, "Correcto"),
+(1, 3, '2022-07-15', 50.0, "Correcto");
+SELECT  * FRom Consumidor;
+INSERT INTO CompraVenta (IDVendedor, IDConsumidor,  Fecha, MontoTotal, EstadoPago ) values (1, 1, '2022-09-12', 200.0, "Correcto");
+INSERT INTO CompraVenta (IDVendedor, IDConsumidor,  Fecha, MontoTotal, EstadoPago ) values (2, 2, '2022-09-12', 200.0, "Correcto");
+
+INSERT INTO CompraVenta (IDVendedor, IDConsumidor,  Fecha, MontoTotal, EstadoPago ) values (1, 1, '2022-09-12', 200.0, "Correcto");
+
+INSERT INTO CompraVentaDetalle (IDCompraVenta, IDProducto,  Cantidad , Subtotal) values (5, 19, 3, 22.12);
+INSERT INTO CompraVentaDetalle (IDCompraVenta, IDProducto,  Cantidad , Subtotal) values (24, 21, 1, 10.12);
+
+
+
+INSERT INTO CompraVentaDetalle (IDCompraVenta, IDProducto,  Cantidad , Subtotal)
+Values (21, 19, 2, 23.50),
+(22, 20, 1, 44.50),
+(23, 21, 4, 50.0);
+SELECT * FROM CompraVentaDetalle;
+alter table CompraVentaDetalle add column IDConsumidor int references Consumidor(IDConsumidor);  
+
+SELECT CD.*, P.Descripcion AS ProductDescription, P.IDCategoria, P.Imagen 
+                FROM CompraVentaDetalle CD 
+                JOIN CompraVenta CV ON CD.IDCompraVenta = CV.IDCompraVenta 
+                JOIN Producto P ON CD.IDProducto = P.IDProducto 
+                WHERE CV.IDConsumidor = 1;
