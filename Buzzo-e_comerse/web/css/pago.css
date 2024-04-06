@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #5E9791;
+    background-position: center;
+    background-size: cover;
+}
+
+main{
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+h2 {
+    color: #5E9791;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+.formulario-pago {
+    margin-top: 20px;
+}
+
+.card-form,
+.efectivo-form,
+.agradecimiento {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.disabled {
+    opacity: 0;
+    pointer-events: none;
+}
+
+label,
+input,
+button {
+    display: block;
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 10px;
+    background-color: #5E9791;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.agradecimiento {
+    color: #5E9791;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.contenedor-volver{
+    gap: 1rem;
+    cursor: pointer;
+}
+.contenedor-volver .bi-arrow-left-circle-fill{
+    font-size: 3rem;
+    color: #5E9791;
+    padding-left: 1rem; 
+}
+.contenedor-volver a{
+    padding: .15rem .25rem;
+    border-radius: .40rem;
+    display: flex;
+    flex-direction: column;
+    color: #5E9791;
+    cursor: pointer;
+    font-size: 12px;
+    margin-right: 15px;
+    align-items: center;
+    text-decoration: none;
+}
+
+.disabled{
+    display: none;
+}

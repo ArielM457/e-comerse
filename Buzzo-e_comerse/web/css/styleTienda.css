@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+
+}
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background: url(img/fondo1.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.contenedor-registroStore{
+    position: relative;
+    width: 328px;
+    transform: translateY(158);
+    background-color: rgba(255, 255, 255, 1);
+    border: 2px solid rgba(255, 255, 255, 6);
+    border-radius: 40px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-registroStore h2{
+    font-size: 23px;
+    color: #080808;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.input-contenedor-store select{
+    width: 100%;
+    height: 45px;
+    background-color: #379A90;
+    border: none;
+    border-radius: 40px;
+    outline: none;
+    font-size: 1rem;
+    padding: 0 10px;
+    font-weight: bold;
+    color: #fff;
+    transition: .4s;
+    margin-bottom: 30px; 
+
+}
+.select{    
+    opacity: .9;
+}
+.input-contenedor{
+    position: relative;
+    margin: 30px 0;
+    width: 280px;
+    border-bottom: 2px solid #fff;
+}
+.input-contenedor label{
+    position: absolute;
+    top:50%;
+    left:9px;
+    transform: translateY(-50%);
+    color: #635959;
+    border-radius: 40px;
+    outline: none;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: .6s;
+    font-weight: bold;
+}
+
+input:focus ~ label,
+input:valid ~ label{
+    top: -5px;
+}
+
+.input-contenedor input{
+    width: 100%;
+    height: 46px;
+    background-color: rgba(217, 217, 217, 1);
+    border:none;
+    border-radius: 40px;
+    font-size: 1rem;
+    padding: 12px;
+    margin: 5px 0;
+    color:#080808;
+}
+.input-contenedor i{
+    position: absolute;
+    color:#635959;
+    font-size: 1.5rem;
+    top: 8px;
+    right: 8px;
+}
+button{
+    width: 100%;
+    height: 45px;
+    background-color: #379A90;
+    border:none;
+    outline: none;
+    font-weight: bold;
+    color:#fff;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: .4s;
+    margin-top: 100px; 
+
+}
+button:hover{
+    opacity: .9;
+}
