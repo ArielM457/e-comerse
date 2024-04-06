@@ -6,3 +6,5 @@ This application is an e-commerce design intended for users who wish to buy diff
   and if you are a customer: login, account information and the ability for the user to purchase items with a dynamic shopping cart, giving the possibility of purchasing with card or cash, once a purchase is made it is recorded in the history Once the purchase is made, the application is intended to have a friendly relationship with the environment, since it only contains products that can be transported in ecological deliveries, either on a bicycle or an electric motorcycle.
 
   For the application to function, a database is required, which is found as an executable query in the DATABASE file.
+
+Notes: It must be opened with Apache neat beans, you must download and add the jdbc connector that is in the same project to solve the problem when opening the project and you must change the password of your database in the src - java - conection
